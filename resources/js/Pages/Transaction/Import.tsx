@@ -4,8 +4,10 @@ import { useForm } from "@inertiajs/react";
 
 
 export default function Import({ auth, table }: PageProps) {
-    const { data, setData, post, progress } = useForm({
-        myFile: null,
+    const { data, setData, post, progress } = useForm<{
+        myFile: File | undefined
+    }>({
+        myFile: undefined,
     })
 
     function submit(e: React.FormEvent<HTMLFormElement>) {
@@ -30,8 +32,11 @@ export default function Import({ auth, table }: PageProps) {
                             className="py-1 mr-1 font-bold text-blue-800 underline cursor-pointer hover:text-blue-600 ">Downlod
                             upload Format
                             Excel</a>
-                        <input id="file" type="file" name="myFile" placeholder="0" step="0.01" max="1"
-                            min="0"
+                        <input id="file" type="file"
+                            onChange={e => {
+                                e.target.files && setData('myFile', e.target.files[0])
+                            }}
+                            name="myFile" placeholder="0"
                             className="block w-full p-3 mt-2 text-gray-700 bg-gray-200 appearance-none focus:outline-none focus:bg-gray-300 focus:shadow-inner"
                             required />
                         <button type="submit"

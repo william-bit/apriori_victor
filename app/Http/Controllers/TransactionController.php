@@ -1,14 +1,13 @@
 <?php
-
 namespace App\Http\Controllers;
 
-use App\Imports\TransactionImport;
+use Carbon\Carbon;
 use App\Models\Product;
 use App\Models\Transaction;
-use Carbon\Carbon;
+use App\Imports\TransactionImport;
+use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\ValidationException;
-use Maatwebsite\Excel\Facades\Excel;
 
 class TransactionController extends Controller
 {
@@ -28,13 +27,13 @@ class TransactionController extends Controller
             }
         }
         $validator = Validator::make($data[0], [
-            "*.0" => 'required|date',
-            "*.1" => 'required|string',
-            "*.2" => "required|string",
-            "*.3" => "required|string",
-            "*.4" => "required|numeric",
-            "*.5" => "required|numeric",
-            "*.6" => "required|string",
+            '*.0' => 'required|date',
+            '*.1' => 'required|string',
+            '*.2' => 'required|string',
+            '*.3' => 'required|string',
+            '*.4' => 'required|numeric',
+            '*.5' => 'required|numeric',
+            '*.6' => 'required|string',
         ]);
         if ($validator->fails()) {
             foreach ($validator->errors()->messages() as $key => $item) {
@@ -52,13 +51,14 @@ class TransactionController extends Controller
             Product::query()->firstOrCreate([
                 'product_code' => $row[2],
             ], [
-                    'product_name' => $row[3],
-                    'price' => 0,
-                    'unit' => 'pcs'
-                ]);
+                'product_name' => $row[3],
+                'price' => 0,
+                'unit' => 'pcs'
+            ]);
         }
         return redirect()->route('data');
     }
+
     public function getData()
     {
         return Transaction::limit(100)->get();
