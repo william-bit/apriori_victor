@@ -43,7 +43,7 @@ export default function Table(props: TableProps) {
                                                         className="px-6 py-4 text-sm font-medium text-gray-900 even:bg-gray-50 whitespace-nowrap">
                                                         {
                                                             header.action == "delete" && (
-                                                                <a href="{{ $header['href'] . '/' . $datum->{$header['key-data']} }}"
+                                                                <a href={header['href'] + '/' + datum[header['key-data']]}
                                                                     className="flex justify-center w-full cursor-pointer">
                                                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none"
                                                                         viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
@@ -56,7 +56,7 @@ export default function Table(props: TableProps) {
                                                         }
                                                         {
                                                             header.action == 'edit' && (
-                                                                <a href="{{ $header['href'] . '/' . $datum->{$header['key-data']} }}"
+                                                                <a href={header['href'] + '/' + datum[header['key-data']]}
                                                                     className="flex justify-center w-full cursor-pointer">
                                                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none"
                                                                         viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"

@@ -2,8 +2,22 @@ import InputLabel from "@/Components/InputLabel";
 import TextInput from "@/Components/TextInput";
 import Authenticated from "@/Layouts/AuthenticatedLayout";
 import { PageProps } from "@/types";
+import { useForm } from "@inertiajs/react";
 
 export default function AccountAdd({ auth }: PageProps) {
+    const { data, setData, post, progress } = useForm<{
+        name?: string;
+        email?: string;
+        role?: string;
+        password?: string;
+        password_confirmation?: string;
+    }>({
+        role: '1'
+    })
+    function submit(e: React.FormEvent<HTMLFormElement>) {
+        e.preventDefault()
+        post(route('account'))
+    }
     return (
         <Authenticated
             user={auth.user}
@@ -14,18 +28,18 @@ export default function AccountAdd({ auth }: PageProps) {
                     <div className='max-w-md mx-auto space-y-6'>
 
 
-                        <form action="{{ route('account') }}" method="post">
+                        <form onSubmit={e => submit(e)} method="post">
                             <h2 className="text-2xl font-bold ">Account</h2>
                             <p className="my-4 opacity-70">Add new account</p>
                             <hr className="my-6" />
                             <InputLabel htmlFor="name" value="name" />
-                            <TextInput className="w-full" name="name"></TextInput>
+                            <TextInput className="w-full" onChange={e => setData('name', e.target.value)} name="name" />
 
                             <InputLabel htmlFor="email" value="Email" />
-                            <TextInput className="w-full" placeholder="Fill with 'xxxx@gmail.com'" name="email">
-                            </TextInput>
+                            <TextInput className="w-full" onChange={e => setData('email', e.target.value)} placeholder="Fill with 'xxxx@gmail.com'" name="email" />
                             <InputLabel htmlFor="role" value="Role" />
                             <select required
+                                onChange={e => setData('role', e.target.value)}
                                 className="w-full p-3 mt-2 border-2 rounded bg-slate-200 border-slate-200 focus:border-slate-600 focus:outline-none"
                                 name="role">
                                 <option value="1">Owner</option>
@@ -33,8 +47,11 @@ export default function AccountAdd({ auth }: PageProps) {
                             </select>
                             <InputLabel htmlFor="password" value="Password" />
                             <div className="flex space-x-3">
-                                <TextInput className="w-1/2" placeholder="Fill with min 8 characters" name="password"></TextInput>
-                                <TextInput className="w-1/2" placeholder="Confirm Password" name="password_confirmation"></TextInput>
+                                <TextInput className="w-1/2"
+                                    onChange={e => setData('password', e.target.value)} placeholder="Fill with min 8 characters" name="password" />
+                                <TextInput className="w-1/2"
+                                    onChange={e => setData('password_confirmation', e.target.value)}
+                                    placeholder="Confirm Password" name="password_confirmation" />
                             </div>
                             <div className="flex mt-2 ">
                                 <input type="submit"
@@ -42,7 +59,6 @@ export default function AccountAdd({ auth }: PageProps) {
                                     value="Submit" />
                             </div>
                         </form>
-
                     </div>
                 </div>
             </div>

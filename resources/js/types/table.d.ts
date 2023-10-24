@@ -9,6 +9,7 @@ export interface TableProps {
 
 export interface Header {
     label: string;
+    href?: string;
     action: "edit" | "delete" | undefined;
     "key-data": string | number;
 }

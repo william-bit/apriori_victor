@@ -1,7 +1,23 @@
 import Authenticated from "@/Layouts/AuthenticatedLayout";
 import { PageProps } from "@/types";
+import { useForm } from "@inertiajs/react";
 
-export default function Config({ auth }: PageProps) {
+export default function Config({ auth, confidence, support }: PageProps<{
+    confidence: string,
+    support: string
+}>) {
+    const { data, setData, post, progress } = useForm<{
+        support: string,
+        confidence: string
+    }>({
+        support: confidence,
+        confidence: support
+    })
+
+    function submit(e: React.FormEvent<HTMLFormElement>) {
+        e.preventDefault()
+        post(route('apriori'))
+    }
     return (
         <Authenticated
             user={auth.user}
@@ -12,17 +28,19 @@ export default function Config({ auth }: PageProps) {
                     <div className='max-w-md mx-auto space-y-6'>
 
 
-                        <form action="{{ route('apriori') }}" method="post">
+                        <form onSubmit={e => submit(e)} method="post">
                             <h2 className="text-2xl font-bold ">Apriori Setting</h2>
                             <p className="my-4 opacity-70">This Is setting for setup apriori Confidence and support</p>
                             <hr className="my-6" />
                             <label className="text-sm font-bold uppercase opacity-70">Confidence</label>
                             <input type="number" step="0.01" max="1" min="0.1" name="confidence"
-                                value="{{ $confidence }}"
+                                value={data.confidence}
+                                onChange={e => setData('confidence', e.target.value)}
                                 className="w-full p-3 mt-2 mb-4 border-2 rounded bg-slate-200 border-slate-200 focus:border-slate-600 focus:outline-none" />
                             <label className="text-sm font-bold uppercase opacity-70">Support</label>
                             <input type="number" step="0.01" max="1" min="0.1" name="support"
-                                value="{{ $support }}"
+                                value={data.support}
+                                onChange={e => setData('support', e.target.value)}
                                 className="w-full p-3 mt-2 mb-4 border-2 rounded bg-slate-200 border-slate-200 focus:border-slate-600 focus:outline-none" />
                             <div className="flex mt-2 " />
                             <input type="submit"
