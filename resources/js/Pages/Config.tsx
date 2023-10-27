@@ -6,13 +6,14 @@ export default function Config({ auth, confidence, support }: PageProps<{
     confidence: string,
     support: string
 }>) {
-    const { data, setData, post, progress } = useForm<{
+    const { data, setData, post, progress, errors } = useForm<{
         support: string,
         confidence: string
     }>({
         support: confidence,
         confidence: support
     })
+
 
     function submit(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault()
