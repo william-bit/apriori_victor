@@ -125,7 +125,7 @@ class ReportController extends Controller
 
             return $pdf->stream();
         } else {
-            return view('pages.report', [
+            return Inertia::render('Report', [
 
                 'error' => 'Filter tidak boleh lebih dari 31 hari',
 

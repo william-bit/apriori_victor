@@ -23,7 +23,7 @@ class TransactionController extends Controller
                     ->format('Y-m-d');
                 unset($item);
             } catch (\Throwable $th) {
-                throw ValidationException::withMessages(['excel' => 'Your format aren\'t match in Row : ' . ($key + 1) . ' Column : 1 please check again your file same as file example provided']);
+                throw ValidationException::withMessages(['myFile' => 'Your format aren\'t match in Row : ' . ($key + 1) . ' Column : 1 please check again your file same as file example provided']);
             }
         }
         $validator = Validator::make($data[0], [
@@ -38,7 +38,7 @@ class TransactionController extends Controller
         if ($validator->fails()) {
             foreach ($validator->errors()->messages() as $key => $item) {
                 $coordinate = explode('.', $key);
-                throw ValidationException::withMessages(['excel' => 'Your format aren\'t match in Row : ' . ($coordinate[0] + 1) . ' Column :' . ($coordinate[1] + 1) . ' please check again your file same as file example provided']);
+                throw ValidationException::withMessages(['myFile' => 'Your format aren\'t match in Row : ' . ($coordinate[0] + 1) . ' Column :' . ($coordinate[1] + 1) . ' please check again your file same as file example provided']);
             }
         }
         foreach ($data[0] as $row) {

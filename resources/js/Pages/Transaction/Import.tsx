@@ -4,11 +4,12 @@ import { useForm } from "@inertiajs/react";
 
 
 export default function Import({ auth, table }: PageProps) {
-    const { data, setData, post, progress } = useForm<{
+    const { data, errors, setData, post, progress } = useForm<{
         myFile: File | undefined
     }>({
         myFile: undefined,
     })
+    console.log(errors)
 
     function submit(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault()
@@ -42,9 +43,9 @@ export default function Import({ auth, table }: PageProps) {
                         <button type="submit"
                             className="w-full py-3 mt-2 font-medium tracking-widest text-white uppercase bg-green-600 rounded-md shadow-lg ripple-bg-green-500 ripple focus:outline-none hover:bg-green-700 hover:shadow-none">
                             Submit </button>
-                        {/* @if ($errors->first('excel'))
-                        <span className="text-red-500">{{ $errors-> first('excel')}} </span>
-                        @endif */}
+                        {
+                            errors.myFile && <span className="text-red-500">{errors.myFile} </span>
+                        }
                     </form>
                 </div>
             </div>

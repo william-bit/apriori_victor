@@ -2,18 +2,19 @@ import Island from '@/Components/Island'
 import Authenticated from '@/Layouts/AuthenticatedLayout'
 import { PageProps } from '@/types'
 
-export default function Report({ auth, filter }: PageProps<{
+export default function Report({ auth, filter, error }: PageProps<{
     filter: {
         until: string,
-        from: string
+        from: string,
     }
+    error: string
 }>) {
     return (
         <Authenticated
             user={auth.user}
             header={<h2 className="text-xl font-semibold leading-tight text-gray-800">Dashboard</h2>}
         >
-            <Island className='py-3'>
+            <Island className='py-10'>
                 <div className="flex justify-center">
                     <div className="w-2/3">
                         <div className="text-3xl font-bold mt-7">Download Report</div>
@@ -32,9 +33,7 @@ export default function Report({ auth, filter }: PageProps<{
                             </a>
                         </div>
                         <div className="h-10 mt-3">
-                            {/* @if (isset($error))
-                        <span className="text-red-600">{{ $error }}</span>
-                        @endif */}
+                            {error && <span className="text-red-600">{error}</span>}
                             <form method="GET" action={route('report.transaction')} className="flex h-full">
                                 <input type="date" name="from" value={filter['from']} required
                                     className="px-5 py-1 mr-1 font-bold bg-white border rounded cursor-pointer outline-0 hover:border-gray-400 hover:bg-gray-100" />

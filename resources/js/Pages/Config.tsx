@@ -9,6 +9,7 @@ export default function Config({ auth, confidence, support }: PageProps<{
     const { data, setData, post, progress, errors } = useForm<{
         support: string,
         confidence: string
+        message?: string
     }>({
         support: confidence,
         confidence: support
@@ -48,9 +49,9 @@ export default function Config({ auth, confidence, support }: PageProps<{
                                 className="px-6 py-3 my-2 font-medium text-white duration-300 ease-in-out rounded cursor-pointer bg-emerald-500 hover:bg-indigo-500"
                                 value="Submit Setting change" />
                         </form>
-                        {/* @if ($errors->first('message'))
-                                    <span className="text-red-500">{{ $errors-> first('message')}} </span>
-                                    @endif */}
+                        {
+                            errors.message && <span className="text-red-500">{errors.message} </span>
+                        }
                     </div>
                 </div>
             </div>
