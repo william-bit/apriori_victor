@@ -147,7 +147,7 @@
             <div class="_signature_date">Tangerang,{{ date('d-F-Y') }}</div>
             <div class="_signature_person">
                 <div>Owner</div>
-                <div><strong><u>Eddy Suwanto</u></strong></div>
+                <div><strong><u>Vina</u></strong></div>
             </div>
         </div>
     </div>
