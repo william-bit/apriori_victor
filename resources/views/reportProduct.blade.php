@@ -101,8 +101,8 @@
     <table class="tableCustom">
         <thead>
             <tr>
-                <th>Product Name</th>
                 <th>Product Code</th>
+                <th>Product Name</th>
             </tr>
         </thead>
         <tbody>
