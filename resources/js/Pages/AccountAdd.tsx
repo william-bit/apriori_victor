@@ -48,9 +48,11 @@ export default function AccountAdd({ auth }: PageProps) {
                             <InputLabel htmlFor="password" value="Password" />
                             <div className="flex space-x-3">
                                 <TextInput className="w-1/2"
+                                    type="password"
                                     onChange={e => setData('password', e.target.value)} placeholder="Fill with min 8 characters" name="password" />
                                 <TextInput className="w-1/2"
                                     onChange={e => setData('password_confirmation', e.target.value)}
+                                    type="password"
                                     placeholder="Confirm Password" name="password_confirmation" />
                             </div>
                             <div className="flex mt-2 ">
