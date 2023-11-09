@@ -1,6 +1,7 @@
 import Authenticated from "@/Layouts/AuthenticatedLayout";
 import { PageProps } from "@/types";
 import { useForm } from "@inertiajs/react";
+import toast from 'react-hot-toast';
 
 export default function Config({ auth, confidence, support }: PageProps<{
     confidence: string,
@@ -18,7 +19,11 @@ export default function Config({ auth, confidence, support }: PageProps<{
 
     function submit(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault()
-        post(route('apriori'))
+        post(route('apriori'), {
+            onFinish: () => {
+                toast.success('Success updated apriori Setting Please go to recommendation menu to start algorithm')
+            }
+        })
     }
     return (
         <Authenticated
