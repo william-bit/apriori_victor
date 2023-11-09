@@ -128,37 +128,6 @@
 
         </tbody>
     </table>
-    <div style="
-    margin-top:50px;
-    font-weight:600;
-    font-size:20px;">Report Result
-        Association Rules
-        Rapid Miner</div>
-    <table class="tableCustom" style="margin-top:10px;">
-        <thead>
-            <tr>
-                <td> Code First Item </td>
-                <td> Code Second Item </td>
-                <td> First Item </td>
-                <td> Second Item </td>
-                <td>Support</td>
-                <td>Confidence</td>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach ($data as $datum)
-                <tr>
-                    <td>{{ implode(',', json_decode($datum->antecedent, true)) }}</td>
-                    <td>{{ implode(',', json_decode($datum->consequent, true)) }}</td>
-                    <td>{{ $datum->antecedentConcat }}</td>
-                    <td>{{ $datum->consequentConcat }}</td>
-                    <td>{{ $datum->support }}</td>
-                    <td>{{ $datum->confidence }}</td>
-                </tr>
-            @endforeach
-
-        </tbody>
-    </table>
     <div>
         <div class="inline-block signature left">
             <div class="_signature_date">Signature</div>
