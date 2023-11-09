@@ -40,10 +40,10 @@ export default function Report({ auth, filter, error }: PageProps<{
                                 className="px-5 py-1 mr-1 font-bold text-white bg-blue-500 rounded cursor-pointer hover:bg-blue-600">
                                 Report Data Item
                             </a>
-                            <a href={route('report.result')}
+                            {/* <a href={route('report.result')}
                                 className="px-5 py-1 mr-1 font-bold text-white bg-blue-500 rounded cursor-pointer hover:bg-blue-600">
                                 Report Result Comparison
-                            </a>
+                            </a> */}
                         </div>
                         <div className="h-10 mt-3">
                             {error && <span className="text-red-600">{error}</span>}
