@@ -1,6 +1,7 @@
 import Island from '@/Components/Island'
 import Authenticated from '@/Layouts/AuthenticatedLayout'
 import { PageProps } from '@/types'
+import { useForm } from '@inertiajs/react'
 
 export default function Report({ auth, filter, error }: PageProps<{
     filter: {
@@ -9,6 +10,18 @@ export default function Report({ auth, filter, error }: PageProps<{
     }
     error: string
 }>) {
+    const { data, setData, get, progress, errors } = useForm<{
+        from?: string,
+        until?: string
+    }>(
+        { ...filter }
+    )
+
+
+    function submit(e: React.FormEvent<HTMLFormElement>) {
+        e.preventDefault()
+        get(route('data'))
+    }
     return (
         <Authenticated
             user={auth.user}
@@ -35,9 +48,9 @@ export default function Report({ auth, filter, error }: PageProps<{
                         <div className="h-10 mt-3">
                             {error && <span className="text-red-600">{error}</span>}
                             <form method="GET" action={route('report.transaction')} className="flex h-full">
-                                <input type="date" name="from" value={filter['from']} required
+                                <input type="date" name="from" value={data['from']} onChange={(e) => setData('from', e.target.value)} required
                                     className="px-5 py-1 mr-1 font-bold bg-white border rounded cursor-pointer outline-0 hover:border-gray-400 hover:bg-gray-100" />
-                                <input type="date" name="until" value={filter['until']} required
+                                <input type="date" name="until" value={data['until']} onChange={(e) => setData('until', e.target.value)} required
                                     className="px-5 py-1 mr-1 font-bold bg-white border rounded cursor-pointer outline-0 hover:border-gray-400 hover:bg-gray-100" />
                                 <button type="submit"
                                     className="px-5 py-1 mr-1 font-bold text-white bg-blue-500 border rounded cursor-pointer hover:bg-blue-600">
