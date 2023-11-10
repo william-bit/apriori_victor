@@ -49,7 +49,7 @@ class RecommendationController extends Controller
         // $dataAssociation = AssociationRule::paginate(10, ["*"], "assoc");
 
         // Gabungan jadi gini (Paginate yang dihilangkan/ diganti, jadi tidak ditambahkan limit())
-        $dataAssociation = AssociationRule::query()->orderBy('confidence', 'desc')->paginate(10, ['*'], 'assoc');
+        $dataAssociation = AssociationRule::query()->orderBy('confidence', 'desc')->paginate(10, ['*']);
         // // UMUM
         // $dataAssociation = AssociationRule::paginate(50, ["*"], "assoc");
         foreach ($dataAssociation as &$datum) {
@@ -150,7 +150,7 @@ class RecommendationController extends Controller
         // $dataAssociation = AssociationRule::limit(10)->get();
 
         // Gabungan jadi begini
-        $dataAssociation = AssociationRule::limit(10)->orderBy('confidence', 'desc')->get();
+        $dataAssociation = AssociationRule::orderBy('confidence', 'desc')->get();
         // UMUM
         // $dataAssociation = AssociationRule::get();
         foreach ($dataAssociation as &$datum) {

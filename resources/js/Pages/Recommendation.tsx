@@ -1,3 +1,4 @@
+import Pagination from "@/Components/Pagination";
 import Table from "@/Components/Table";
 import Authenticated from "@/Layouts/AuthenticatedLayout";
 import { PageProps } from "@/types";
@@ -25,7 +26,7 @@ export default function Recommendation({ auth, tableRecommendation }: PageProps<
 
                         </div>
                     </div>
-                    <Table {...tableRecommendation} />
+                    <Table {...tableRecommendation} paginate={<Pagination data={tableRecommendation.data} onPageChange={(page) => console.log(page)} />} />
                 </div>
             </div>
         </Authenticated>

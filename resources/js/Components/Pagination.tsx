@@ -38,11 +38,13 @@ export default function Pagination({ data, onPageChange, }: PaginationProps) {
                                 </svg>
                             </Link>
                             {pages.map((page, index) => {
-                                if (index == 3) {
-                                    return <span className="relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-700 ring-1 ring-inset ring-gray-300 focus:outline-offset-0">...</span>
-                                }
-                                if (index < 3 || index > pages.length - 3) {
-                                    return (<Link onClick={() => onPageChange(page)} key={page} href={data.path + "?page=" + page} aria-current="page" className={`${data.current_page === page ? 'text-white bg-indigo-600 focus-visible:outline-indigo-600 font-semibold text-sm relative z-10 inline-flex items-center px-4 py-2  focus:z-20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2' : 'relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0'} `}>{page}</Link>)
+                                if (page == data.current_page || [1, data.last_page, data.current_page - 1, data.current_page + 1,].includes(page)) {
+                                    return (<>
+                                        {data.last_page == page && data.current_page != page && <span className="relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-700 ring-1 ring-inset ring-gray-300 focus:outline-offset-0">...</span>}
+                                        <Link onClick={() => onPageChange(page)} key={page} href={data.path + "?page=" + page} aria-current="page" className={`${data.current_page === page ? 'text-white bg-indigo-600 focus-visible:outline-indigo-600 font-semibold text-sm relative z-10 inline-flex items-center px-4 py-2  focus:z-20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2' : 'relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0'} `}>{page}</Link>
+                                        {page == 1 && data.current_page != page && <span className="relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-700 ring-1 ring-inset ring-gray-300 focus:outline-offset-0">...</span>}
+                                    </>
+                                    )
                                 }
                             })}
                             <Link href={data.next_page_url} className="relative inline-flex items-center px-2 py-2 text-gray-400 rounded-r-md ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0">
