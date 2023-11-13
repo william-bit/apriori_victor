@@ -40,12 +40,12 @@ export default function Config({ auth, confidence, support }: PageProps<{
                                 <h2 className="text-2xl font-bold ">Apriori Setting</h2>
                                 <p className="my-4 opacity-70">This Is setting for setup apriori Confidence and support</p>
                                 <hr className="my-6" />
-                                <label className="text-sm font-bold uppercase opacity-70">Minimum Confidence <span className="text-red-500">(Max 1.0)</span></label>
+                                <label className="text-sm font-bold uppercase opacity-70">Minimum Confidence <span className="text-red-500">(Range 0.1-1.0)</span></label>
                                 <input type="number" step="0.01" max="1" min="0.1" name="confidence"
                                     value={data.confidence}
                                     onChange={e => setData('confidence', e.target.value)}
                                     className="w-full p-3 mt-2 mb-4 border-2 rounded bg-slate-200 border-slate-200 focus:border-slate-600 focus:outline-none" />
-                                <label className="text-sm font-bold uppercase opacity-70">Minimum Support <span className="text-red-500">(Max 1.0)</span></label>
+                                <label className="text-sm font-bold uppercase opacity-70">Minimum Support <span className="text-red-500">(Range 0.1-1.0)</span></label>
                                 <input type="number" step="0.01" max="1" min="0.1" name="support"
                                     value={data.support}
                                     onChange={e => setData('support', e.target.value)}
