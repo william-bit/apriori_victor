@@ -1,5 +1,6 @@
 import { Data } from "@/types/table";
 import { Link } from "@inertiajs/react";
+import { PaginationContent, PaginationEllipsis, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious, PaginationUI } from "./ui/pagination";
 
 interface PaginationProps {
     data: Data
@@ -10,10 +11,6 @@ export default function Pagination({ data, onPageChange, }: PaginationProps) {
     const pages = Array.from({ length: data.last_page }, (_, i) => i + 1);
     return (
         <>
-            <nav className="flex justify-center mt-6" >
-                <ul className="pagination">
-                </ul>
-            </nav>
             <div className="flex items-center justify-between px-4 py-3 border-t border-gray-200 sm:px-6">
                 <div className="flex justify-between flex-1 sm:hidden">
                     {data.current_page > 1 && <Link href={data.prev_page_url} onClick={() => onPageChange(data.current_page - 1)} className={`relative inline-flex items-center px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 hover:bg-gray-50`}>Previous</Link>}
@@ -30,30 +27,28 @@ export default function Pagination({ data, onPageChange, }: PaginationProps) {
                         <span>results</span>
                     </div>
                     <div>
-                        <nav className="inline-flex -space-x-px shadow-sm isolate" aria-label="Pagination">
-                            <Link href={data.prev_page_url} className="relative inline-flex items-center px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0">
-                                <span className="sr-only">Previous</span>
-                                <svg className="w-5 h-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                    <path fill-rule="evenodd" d="M12.79 5.23a.75.75 0 01-.02 1.06L8.832 10l3.938 3.71a.75.75 0 11-1.04 1.08l-4.5-4.25a.75.75 0 010-1.08l4.5-4.25a.75.75 0 011.06.02z" clip-rule="evenodd" />
-                                </svg>
-                            </Link>
-                            {pages.map((page, index) => {
-                                if (page == data.current_page || [1, data.last_page, data.current_page - 1, data.current_page + 1,].includes(page)) {
-                                    return (<>
-                                        {data.last_page == page && data.current_page != page && <span className="relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-700 ring-1 ring-inset ring-gray-300 focus:outline-offset-0">...</span>}
-                                        <Link onClick={() => onPageChange(page)} key={page} href={data.path + "?page=" + page} aria-current="page" className={`${data.current_page === page ? 'text-white bg-gray-600 focus-visible:outline-gray-600 font-semibold text-sm relative z-10 inline-flex items-center px-4 py-2  focus:z-20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2' : 'relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0'} `}>{page}</Link>
-                                        {page == 1 && data.current_page != page && <span className="relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-700 ring-1 ring-inset ring-gray-300 focus:outline-offset-0">...</span>}
-                                    </>
-                                    )
-                                }
-                            })}
-                            <Link href={data.next_page_url} className="relative inline-flex items-center px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0">
-                                <span className="sr-only">Next</span>
-                                <svg className="w-5 h-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                    <path fill-rule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clip-rule="evenodd" />
-                                </svg>
-                            </Link>
-                        </nav>
+                        <PaginationUI>
+                            <PaginationContent>
+                                <PaginationItem>
+                                    <PaginationPrevious href={data.prev_page_url} size={"default"} />
+                                </PaginationItem>
+                                <PaginationItem>
+                                    {pages.map((page, index) => {
+                                        if (page == data.current_page || [1, data.last_page, data.current_page - 1, data.current_page + 1,].includes(page)) {
+                                            return (
+                                                <PaginationLink size={"default"} onClick={() => onPageChange(page)} key={page} href={data.path + "?page=" + page} aria-current="page">{page}</PaginationLink>
+                                            )
+                                        }
+                                    })}
+                                </PaginationItem>
+                                <PaginationItem>
+                                    <PaginationEllipsis />
+                                </PaginationItem>
+                                <PaginationItem>
+                                    <PaginationNext href={data.next_page_url} size={"default"} />
+                                </PaginationItem>
+                            </PaginationContent>
+                        </PaginationUI>
                     </div>
                 </div>
             </div >
