@@ -11,7 +11,7 @@ import {
 import { cn } from "@/lib/utils";
 import React from "react";
 
-export function DatePicker(props: { value?: Date, onChange: (e?: Date) => void }) {
+export function DatePicker(props: { className?: string, value?: Date, onChange: (e?: Date) => void }) {
     const [date, setDate] = React.useState<Date | undefined>(props.value)
     return (
         <Popover>
@@ -20,7 +20,8 @@ export function DatePicker(props: { value?: Date, onChange: (e?: Date) => void }
                     variant={"outline"}
                     className={cn(
                         "w-[280px] justify-start text-left font-normal",
-                        !date && "text-muted-foreground"
+                        !date && "text-muted-foreground",
+                        props.className
                     )}
                 >
                     <CalendarIcon className="w-4 h-4 mr-2" />
