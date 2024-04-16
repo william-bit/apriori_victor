@@ -43,8 +43,8 @@ export default function Authenticated({ user, header, children }: PropsWithChild
             </div>
             <div className='w-full'>
                 <nav className="bg-[#f8f4f3] border-b border-gray-300">
-                    <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
-                        <div className="flex justify-between h-16">
+                    <div className="px-4 sm:px-6 lg:px-8">
+                        <div className="flex justify-between w-full h-16">
                             <div className="flex">
                                 <div className="flex items-center shrink-0">
                                     <Link href="/">
