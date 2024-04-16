@@ -55,7 +55,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/data/import', [DataController::class, 'import'])->name('data.import');
     Route::get('/product/import', [ProductController::class, 'import'])->name('product.import');
     Route::get('/recommendation', [RecommendationController::class, 'index'])->name('recommendation');
-    Route::get('/product', [ProductController::class, 'index'])->name('product');
+    Route::get('/product', [ProductController::class, 'index'])->name('products');
     Route::get('/product/delete', [ProductController::class, 'destroy'])->name('product.destroy');
     Route::post('/product', [ProductController::class, 'store'])->name('product');
     Route::get('/rule/config', [ConfigController::class, 'index'])->name('config');
@@ -69,7 +69,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/transaction', [TransactionController::class, 'index'])->name('transaction');
     Route::get('/algorithm/start', [AlgorithmController::class, 'index'])->name('algorithm.start');
     Route::get('/recommendation/report', [RecommendationController::class, 'export'])->name('algorithm.export');
-    Route::get('/account', [AccountController::class, 'index'])->name('account');
+    Route::get('/account', [AccountController::class, 'index'])->name('accounts');
     Route::get('/account/add', [AccountController::class, 'create'])->name('account.add');
     Route::get('/account/delete/{id}', [AccountController::class, 'destroy'])->name('account.delete');
     Route::post('/account', [AccountController::class, 'store'])->name('account');

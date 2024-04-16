@@ -1,13 +1,11 @@
 <?php
-
 namespace App\Http\Controllers;
 
-use App\Models\AssociationRule;
-use App\Models\Product;
 use App\Models\Rule;
+use App\Models\Product;
 use App\Models\Transaction;
-use Illuminate\Http\Request;
 use Phpml\Association\Apriori;
+use App\Models\AssociationRule;
 
 class AlgorithmController extends Controller
 {
@@ -15,6 +13,7 @@ class AlgorithmController extends Controller
     {
         return AssociationRule::get();
     }
+
     public function transform($data)
     {
         $newData = [];
@@ -28,6 +27,7 @@ class AlgorithmController extends Controller
             'dataProducts' => $dataProducts
         ];
     }
+
     public function index()
     {
         $rule = Rule::find(1);
@@ -35,7 +35,7 @@ class AlgorithmController extends Controller
         if ($rule && $transaction) {
             ['sample' => $samples, 'dataProducts' => $dataProducts] = $this->transform($transaction);
             AssociationRule::truncate();
-            $labels  = [];
+            $labels = [];
 
             $associator = new Apriori($rule->support, $rule->confidence);
             $associator->train($samples, $labels);
@@ -52,12 +52,16 @@ class AlgorithmController extends Controller
             }
             $this->automaticInsertProduct($dataProducts);
             return redirect()->route('recommendation');
+        } else {
+            return redirect()->route('recommendation');
         }
     }
+
     public function getProduct()
     {
         return Product::get()->toArray();
     }
+
     private function automaticInsertProduct($dataProducts)
     {
         $data = $this->getProduct();

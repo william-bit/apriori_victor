@@ -61,13 +61,13 @@ class AccountController extends Controller
             'role' => $request->role,
             'password' => Hash::make($request->password),
         ]);
-        return redirect()->route('account');
+        return redirect()->route('accounts');
     }
 
     public function destroy($id)
     {
         $user = User::find($id);
         $user->delete();
-        return redirect()->route('account');
+        return redirect()->route('accounts');
     }
 }

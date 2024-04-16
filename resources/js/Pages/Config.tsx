@@ -1,3 +1,4 @@
+import Island from "@/Components/Island";
 import Authenticated from "@/Layouts/AuthenticatedLayout";
 import { PageProps } from "@/types";
 import { useForm } from "@inertiajs/react";
@@ -32,7 +33,7 @@ export default function Config({ auth, confidence, support }: PageProps<{
         >
             <div className='flex items-center justify-center mt-10'>
                 <div>
-                    <div className='w-full max-w-lg px-10 py-8 mx-auto bg-white border border-gray-100 shadow-xl'>
+                    <Island className="w-full py-8 mx-auto shadow-xl">
                         <div className='max-w-md mx-auto space-y-6'>
 
 
@@ -44,23 +45,23 @@ export default function Config({ auth, confidence, support }: PageProps<{
                                 <input type="number" step="0.01" max="1" min="0.1" name="confidence"
                                     value={data.confidence}
                                     onChange={e => setData('confidence', e.target.value)}
-                                    className="w-full p-3 mt-2 mb-4 border-2 rounded bg-slate-200 border-slate-200 focus:border-slate-600 focus:outline-none" />
+                                    className="w-full p-3 mt-2 mb-4 border-2 bg-slate-200 border-slate-200 focus:border-slate-600 focus:outline-none" />
                                 <label className="text-sm font-bold uppercase opacity-70">Minimum Support <span className="text-red-500">(Range 0.1-1.0)</span></label>
                                 <input type="number" step="0.01" max="1" min="0.1" name="support"
                                     value={data.support}
                                     onChange={e => setData('support', e.target.value)}
-                                    className="w-full p-3 mt-2 mb-4 border-2 rounded bg-slate-200 border-slate-200 focus:border-slate-600 focus:outline-none" />
+                                    className="w-full p-3 mt-2 mb-4 border-2 bg-slate-200 border-slate-200 focus:border-slate-600 focus:outline-none" />
                                 <div className="flex mt-2 " />
                                 <input type="submit"
-                                    className="px-6 py-3 my-2 font-medium text-white duration-300 ease-in-out rounded cursor-pointer bg-emerald-500 hover:bg-indigo-500"
+                                    className="px-6 py-3 my-2 font-medium text-white duration-300 ease-in-out cursor-pointer bg-emerald-500 hover:bg-indigo-500"
                                     value="Submit Setting change" />
                             </form>
                             {
                                 errors.message && <span className="text-red-500">{errors.message} </span>
                             }
                         </div>
-                    </div>
-                    <div className="w-full max-w-lg px-10 py-8 mx-auto mt-5 bg-white border border-gray-100 shadow-xl">
+                    </Island>
+                    <Island className="w-full max-w-lg px-10 py-8 mx-auto mt-5 shadow-xl">
                         <div>
                             *Note :
                         </div>
@@ -73,7 +74,7 @@ export default function Config({ auth, confidence, support }: PageProps<{
                         <div className="mt-5">
                             Nilai support memberi tahu kita seberapa umum kombinasi barang muncul, sementara nilai confidence memberi tahu kita seberapa kuat aturan asosiasi antara barang tersebut.
                         </div>
-                    </div>
+                    </Island>
                 </div>
             </div>
         </Authenticated >

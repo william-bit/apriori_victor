@@ -11,7 +11,7 @@ class ProductController extends Controller
     public function destroy()
     {
         Product::truncate();
-        return redirect()->route('product');
+        return redirect()->route('products');
     }
 
     public function index()
@@ -45,7 +45,7 @@ class ProductController extends Controller
     {
         Product::truncate();
         Excel::import(new ProductImport(), request()->file('myFile'));
-        return redirect()->route('product');
+        return redirect()->route('products');
     }
 
     public function import()

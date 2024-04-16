@@ -10,9 +10,9 @@ export default function Welcome({ auth, laravelVersion, phpVersion }: PageProps<
         { label: 'Dashboard', href: route('dashboard'), active: route().current('dashboard') },
     ]
     return (
-        <>
+        <div className='h-screen'>
             <Head title="Welcome" />
-            <nav>
+            <nav className='sticky top-0 border-b bg-stone-50'>
                 <div
                     className="flex items-center justify-between w-full px-6 py-2"
                 >
@@ -36,7 +36,7 @@ export default function Welcome({ auth, laravelVersion, phpVersion }: PageProps<
                             </svg>
                         </button>
                     </div>
-                    <div className={`hidden lg:block`}>
+                    <div className={`hidden lg:block `}>
                         <ul className="inline-flex">
                             <li>
                                 <Link className="px-4 font-bold" href="/dashboard">Dashboard</Link>
@@ -65,109 +65,24 @@ export default function Welcome({ auth, laravelVersion, phpVersion }: PageProps<
                     </div>
                 </div>
             }
-            <div
-                className="py-20"
-                style={{ background: 'linear-gradient(90deg, #667eea 0%, #764ba2 100%)' }}
-            >
-                <div className="container px-6 mx-auto">
-                    <h2 className="mb-2 text-4xl font-bold text-white">
-                        Toko Plastik Kembar jaya
-                    </h2>
-                    <h3 className="mb-8 text-2xl text-gray-200">
-                        Menyediakan kantong plastik PP ,plastik PE, kantong HD dan pelengkapan kue
-                    </h3>
-                    <a
-                        className="px-8 py-4 font-bold tracking-wider uppercase bg-white rounded-full shadow-lg"
-                        href={route('dashboard')}
-                    >
-                        Go To dashboard
-                    </a>
-                </div>
-            </div>
-            <section className="p-10 px-6 mx-auto">
-                <h2 className="mb-8 text-4xl font-bold text-center text-gray-800">
-                    Menjual
-                </h2>
-                {
-                    [
-                        { title: "Kantong HD", image: "/storage/image/kantong-hd.jpg", description: "Our Smart Health Monitoring Wristwatch is able to capture you vitals while you exercise. You can create different category of exercises and can track your vitals on the go." },
-                        { title: "Kantong PP", image: "/storage/image/kantong-pp.webp", description: "Our Smart Health Monitoring Wristwatch allows you to sync data across all your mobile devices whether iOS, Android or Windows OS and also to your laptop whether MacOS, GNU/Linux or Windows OS." },
-                        { title: "Kantong PE", image: "/storage/image/kantong-pe.jpg", description: "Our Smart Health Monitoring Wristwatch allows you to sync data across all your mobile devices whether iOS, Android or Windows OS and also to your laptop whether MacOS, GNU/Linux or Windows OS." },
-                    ].map(value => (
-                        <div className="flex items-center justify-center mb-20 space-x-5">
-                            <div className="flex flex-col w-1/3">
-                                <h4 className="mb-3 text-3xl font-bold text-gray-800">
-                                    {value.title}
-                                </h4>
-                                <p className="mb-8 text-gray-600">
-                                    {value.description}
-                                </p>
-                            </div>
-                            <div>
-                                <img src={value.image} alt={value.title + " image"} className='rounded w-80' />
-                            </div>
-                        </div>
-                    ))
-                }
-            </section>
-            <section className="bg-gray-100">
-                <div className="container px-6 py-20 mx-auto">
-                    <h2 className="mb-8 text-4xl font-bold text-center text-gray-800">
-                        Testimonials
-                    </h2>
-                    <div className="flex flex-wrap">
-                        <div className="w-full px-2 mb-4 md:w-1/3">
-                            <div className="py-2 bg-white rounded shadow">
-                                <p className="px-6 mb-5 text-base text-gray-800">
-                                    Monitoring and tracking my health vitals anywhere I go and on
-                                    any platform I use has never been easier.
-                                </p>
-                                <p className="px-6 text-xs text-gray-500 md:text-sm">
-                                    John Doe
-                                </p>
-                            </div>
-                        </div>
-                        <div className="w-full px-2 mb-4 md:w-1/3">
-                            <div className="py-2 bg-white rounded shadow">
-                                <p className="px-6 mb-5 text-base text-gray-800">
-                                    As an Athlete, this is the perfect product for me. I wear my
-                                    Smart Health Monitoring Wristwatch everywhere I go, even in the
-                                    bathroom since it's waterproof.
-                                </p>
-                                <p className="px-6 text-xs text-gray-500 md:text-sm">
-                                    Jane Doe
-                                </p>
-                            </div>
-                        </div>
-                        <div className="w-full px-2 mb-4 md:w-1/3">
-                            <div className="py-2 bg-white rounded shadow">
-                                <p className="px-6 mb-5 text-base text-gray-800">
-                                    I don't regret buying this wearble gadget. One of the best
-                                    gadgets I own!.
-                                </p>
-                                <p className="px-6 text-xs text-gray-500 md:text-sm">
-                                    James Doe
-                                </p>
-                            </div>
-                        </div>
+            <div className="bg-[#f8f4f3]">
+                <div className="flex items-center justify-between px-5 py-28">
+                    <div className="w-1/2">
+                        <h2 className="text-5xl font-semibold text-gray-800">Apriori Application</h2>
+                        <h3 className="mt-4 text-xl font-semibold text-gray-600">Penerapan Algoritma Apriori dalam Aplikasi</h3>
+                        <p className="mt-4 text-gray-600">Aplikasi ini menggunakan algoritma Apriori untuk menentukan rekomendasi item terbaik yang dapat di gunakan dalam keputusan bisnis</p>
+                    </div>
+                    <div className="w-1/2">
+                        <img src="https://www.emprenderconactitud.com/img/fidelizamas.png" alt="Imagen relacionada con el programa de fidelización" className="w-full h-auto" />
                     </div>
                 </div>
-            </section>
-            <section style={{ backgroundColor: '#667eea' }}>
-                <div className="container px-6 py-20 mx-auto text-center">
-                    <h2 className="mb-6 text-4xl font-bold text-center text-white">
-                        Apa yang anda tunggu?
-                    </h2>
-                    <h3 className="my-4 text-2xl text-white">
-                        Datang ke toko kami sekarang
-                    </h3>
-                    <button
-                        className="px-8 py-4 mt-6 font-bold tracking-wider uppercase bg-white rounded-full shadow-lg"
-                    >
-                        Lokasi
-                    </button>
-                </div>
-            </section>
+            </div>
+            <div
+                className="py-20"
+                style={{ background: 'linear-gradient(90deg, rgba(131,58,180,1) 0%, rgba(253,29,29,1) 50%, rgba(252,176,69,1) 100%)' }}
+            >
+
+            </div>
             <footer className="bg-gray-100">
                 <div className="container px-6 pt-10 pb-6 mx-auto">
                     <div className="flex flex-wrap">
@@ -260,6 +175,6 @@ export default function Welcome({ auth, laravelVersion, phpVersion }: PageProps<
                     </div>
                 </div>
             </footer>
-        </>
+        </div>
     );
 }

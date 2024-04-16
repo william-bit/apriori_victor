@@ -33,15 +33,15 @@ export default function Report({ auth, filter, error }: PageProps<{
                         <div className="text-3xl font-bold mt-7">Download Report</div>
                         <div className="flex mt-2 ">
                             <a href={route('report.topFive')}
-                                className="px-5 py-1 mr-1 font-bold text-white bg-blue-500 rounded cursor-pointer hover:bg-blue-600">
+                                className="px-5 py-1 mr-1 font-bold text-white bg-blue-500 cursor-pointer hover:bg-blue-600">
                                 Report Top 5 Item
                             </a>
                             <a href={route('report.product')}
-                                className="px-5 py-1 mr-1 font-bold text-white bg-blue-500 rounded cursor-pointer hover:bg-blue-600">
+                                className="px-5 py-1 mr-1 font-bold text-white bg-blue-500 cursor-pointer hover:bg-blue-600">
                                 Report Data Item
                             </a>
                             {/* <a href={route('report.result')}
-                                className="px-5 py-1 mr-1 font-bold text-white bg-blue-500 rounded cursor-pointer hover:bg-blue-600">
+                                className="px-5 py-1 mr-1 font-bold text-white bg-blue-500 cursor-pointer hover:bg-blue-600">
                                 Report Result Comparison
                             </a> */}
                         </div>
@@ -49,11 +49,11 @@ export default function Report({ auth, filter, error }: PageProps<{
                             {error && <span className="text-red-600">{error}</span>}
                             <form method="GET" action={route('report.transaction')} className="flex h-full">
                                 <input type="date" name="from" value={data['from']} onChange={(e) => setData('from', e.target.value)} required
-                                    className="px-5 py-1 mr-1 font-bold bg-white border rounded cursor-pointer outline-0 hover:border-gray-400 hover:bg-gray-100" />
+                                    className="px-5 py-1 mr-1 font-bold bg-white border cursor-pointer outline-0 hover:border-gray-400 hover:bg-gray-100" />
                                 <input type="date" name="until" value={data['until']} onChange={(e) => setData('until', e.target.value)} required
-                                    className="px-5 py-1 mr-1 font-bold bg-white border rounded cursor-pointer outline-0 hover:border-gray-400 hover:bg-gray-100" />
+                                    className="px-5 py-1 mr-1 font-bold bg-white border cursor-pointer outline-0 hover:border-gray-400 hover:bg-gray-100" />
                                 <button type="submit"
-                                    className="px-5 py-1 mr-1 font-bold text-white bg-blue-500 border rounded cursor-pointer hover:bg-blue-600">
+                                    className="px-5 py-1 mr-1 font-bold text-white bg-blue-500 border cursor-pointer hover:bg-blue-600">
                                     Report Sales</button>
                             </form>
                         </div>
