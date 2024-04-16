@@ -1,46 +1,43 @@
 import { TableProps } from "@/types/table"
+import { TableBody, TableCell, TableHead, TableHeader, TableRow, TableUI } from "./ui/table"
 
 export default function Table(props: TableProps) {
     return (
-        <div className="flex flex-col">
+        <div className="flex flex-col mt-1">
             <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
                 <div className="inline-block min-w-full py-2 sm:px-6 lg:px-8">
                     <div className="overflow-hidden">
-                        <table className="min-w-full text-center">
-                            <thead className="border bg-stone-50">
-                                <tr>
-                                    <th scope="col" className="px-6 py-4 text-sm font-medium ">
-                                        NO
-                                    </th>
+                        <TableUI className="border">
+                            <TableHeader>
+                                <TableRow>
+                                    <TableHead className="w-[100px]">NO</TableHead>
                                     {
                                         props.header.map(header => (
-                                            <th key={header["key-data"]} scope="col" className="px-6 py-4 text-sm font-medium ">
-                                                {header['label']}
-                                            </th>
+                                            <TableHead key={header["key-data"]} scope="col">                                                {header['label']}</TableHead>
                                         ))
                                     }
-                                </tr>
-                            </thead >
-                            <tbody>
-                                {props.data.data.length == 0 && <tr className="border-b bg-stone-50">
-                                    <td
-                                        colSpan={props.header.length + 1}
-                                        className="px-6 py-4 text-sm font-medium text-gray-900 border whitespace-nowrap">
-                                        No Data
-                                    </td>
-                                </tr>}
+                                </TableRow>
+                            </TableHeader>
+                            <TableBody>
+                                {props.data.data.length == 0 &&
+                                    <TableRow>
+                                        <TableCell colSpan={props.header.length + 1} className="px-6 py-4 text-sm font-medium text-gray-900 border whitespace-nowrap">
+                                            No Data
+                                        </TableCell>
+                                    </TableRow>
+                                }
                                 {
                                     props.data.data.map((datum, key) => (
 
-                                        <tr className="border-b border-l border-r even:bg-stone-50 hover:bg-stone-100">
-                                            <td className="px-6 py-4 text-sm font-medium text-gray-900 whitespace-nowrap">
+                                        <TableRow>
+                                            <TableCell className="text-sm font-medium whitespace-nowrap">
                                                 {key + 1 + (props.data.current_page - 1) * props.data.per_page}
-                                            </td>
+                                            </TableCell>
                                             {
                                                 props.header.map((header) => (
-                                                    <td
+                                                    <TableCell
                                                         key={header.label}
-                                                        className="px-6 py-4 text-sm font-medium text-gray-900 whitespace-nowrap">
+                                                        className="text-sm font-medium whitespace-nowrap">
                                                         {
                                                             header.action == "delete" && (
                                                                 <a href={header['href'] + '/' + datum[header['key-data']]}
@@ -68,14 +65,14 @@ export default function Table(props: TableProps) {
                                                             )
                                                         }
                                                         {!header.action && datum[header['key-data']]}
-                                                    </td>
+                                                    </TableCell>
                                                 ))
                                             }
-                                        </tr>
+                                        </TableRow>
                                     ))
                                 }
-                            </tbody>
-                        </table>
+                            </TableBody>
+                        </TableUI>
                     </div>
                 </div>
             </div>
