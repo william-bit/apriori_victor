@@ -1,3 +1,4 @@
+import { DatePicker } from '@/Components/DatePicker'
 import Island from '@/Components/Island'
 import Authenticated from '@/Layouts/AuthenticatedLayout'
 import { PageProps } from '@/types'
@@ -40,18 +41,12 @@ export default function Report({ auth, filter, error }: PageProps<{
                                 className="px-5 py-1 mr-1 font-bold text-white bg-blue-500 cursor-pointer hover:bg-blue-600">
                                 Report Data Item
                             </a>
-                            {/* <a href={route('report.result')}
-                                className="px-5 py-1 mr-1 font-bold text-white bg-blue-500 cursor-pointer hover:bg-blue-600">
-                                Report Result Comparison
-                            </a> */}
                         </div>
                         <div className="h-10 mt-3">
                             {error && <span className="text-red-600">{error}</span>}
                             <form method="GET" action={route('report.transaction')} className="flex h-full">
-                                <input type="date" name="from" value={data['from']} onChange={(e) => setData('from', e.target.value)} required
-                                    className="px-5 py-1 mr-1 font-bold bg-white border cursor-pointer outline-0 hover:border-gray-400 hover:bg-gray-100" />
-                                <input type="date" name="until" value={data['until']} onChange={(e) => setData('until', e.target.value)} required
-                                    className="px-5 py-1 mr-1 font-bold bg-white border cursor-pointer outline-0 hover:border-gray-400 hover:bg-gray-100" />
+                                <DatePicker value={filter['from'] ? new Date(filter['from']) : undefined} onChange={(e) => { setData('from', e && DateTime.fromJSDate(e).setZone('system').toFormat('yyyy-MM-dd')); }} />
+                                <DatePicker value={filter['until'] ? new Date(filter['until']) : undefined} onChange={(e) => { setData('until', e && DateTime.fromJSDate(e).setZone('system').toFormat('yyyy-MM-dd')); }} />
                                 <button type="submit"
                                     className="px-5 py-1 mr-1 font-bold text-white bg-blue-500 border cursor-pointer hover:bg-blue-600">
                                     Report Sales</button>

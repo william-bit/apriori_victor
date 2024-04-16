@@ -1,5 +1,5 @@
 import { AxiosInstance } from "axios";
-import ziggyRoute, { Config as ZiggyConfig } from "ziggy-js";
+import { Config as ZiggyConfig, route as ziggyRoute } from "ziggy-js";
 
 declare global {
     interface Window {

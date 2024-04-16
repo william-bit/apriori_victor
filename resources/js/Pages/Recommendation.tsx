@@ -1,3 +1,4 @@
+import Island from "@/Components/Island";
 import Pagination from "@/Components/Pagination";
 import Table from "@/Components/Table";
 import Authenticated from "@/Layouts/AuthenticatedLayout";
@@ -12,7 +13,7 @@ export default function Recommendation({ auth, tableRecommendation }: PageProps<
             user={auth.user}
             header={<h2 className="text-xl font-semibold leading-tight text-gray-800">Dashboard</h2>
             }>
-            <div className="flex justify-center">
+            <Island className="flex justify-center">
                 <div className="w-2/3">
                     <div className="flex justify-between mt-10">
                         <div className="text-3xl font-bold mt-7">{ } </div>
@@ -28,7 +29,7 @@ export default function Recommendation({ auth, tableRecommendation }: PageProps<
                     </div>
                     <Table {...tableRecommendation} paginate={<Pagination data={tableRecommendation.data} onPageChange={(page) => console.log(page)} />} />
                 </div>
-            </div>
+            </Island>
         </Authenticated>
     )
 }

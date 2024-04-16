@@ -29,7 +29,7 @@ export default function Table(props: TableProps) {
                                 {
                                     props.data.data.map((datum, key) => (
 
-                                        <TableRow>
+                                        <TableRow key={datum.id}>
                                             <TableCell className="text-sm font-medium whitespace-nowrap">
                                                 {key + 1 + (props.data.current_page - 1) * props.data.per_page}
                                             </TableCell>

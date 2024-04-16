@@ -1,3 +1,4 @@
+import { DatePicker } from "@/Components/DatePicker";
 import Island from "@/Components/Island";
 import Pagination from "@/Components/Pagination";
 import Table from "@/Components/Table";
@@ -5,6 +6,7 @@ import Authenticated from "@/Layouts/AuthenticatedLayout";
 import { PageProps } from "@/types";
 import { TableProps } from "@/types/table";
 import { useForm } from "@inertiajs/react";
+import { DateTime } from "luxon";
 
 export default function Transaction({ auth, table, filter }: PageProps<{
     table: TableProps
@@ -19,7 +21,6 @@ export default function Transaction({ auth, table, filter }: PageProps<{
     }>(
         { ...filter }
     )
-
 
     function submit(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault()
@@ -37,8 +38,8 @@ export default function Transaction({ auth, table, filter }: PageProps<{
                         <a href={route('data.import')} className="flex items-center justify-center px-5 py-1 mr-1 font-bold text-white bg-green-500 cursor-pointer whitespace-nowrap hover:bg-green-600" type="button">
                             Add Transaction
                         </a>
-                        <input type="date" name="from" value={filter['from']} onChange={(e) => setData('from', e.target.value)} className="px-5 py-1 mr-1 font-bold bg-white border cursor-pointer shrink-0 outline-0 hover:border-gray-400 hover:bg-gray-100" />
-                        <input type="date" name="until" value={filter['until']} onChange={(e) => setData('until', e.target.value)} className="px-5 py-1 mr-1 font-bold bg-white border cursor-pointer shrink-0 outline-0 hover:border-gray-400 hover:bg-gray-100" />
+                        <DatePicker value={filter['from'] ? new Date(filter['from']) : undefined} onChange={(e) => { setData('from', e && DateTime.fromJSDate(e).setZone('system').toFormat('yyyy-MM-dd')); }} />
+                        <DatePicker value={filter['until'] ? new Date(filter['until']) : undefined} onChange={(e) => { setData('until', e && DateTime.fromJSDate(e).setZone('system').toFormat('yyyy-MM-dd')); }} />
                         <button type="submit" value="submit" className="px-8 py-3 mr-1 text-base font-bold text-white uppercase transition-all duration-150 ease-linear bg-gray-500 shadow-md outline-none active:bg-gray-600 hover:shadow-lg focus:outline-none">Filter</button>
                         <a href={route('data')} className="flex items-center justify-center px-5 py-1 mr-1 font-bold text-white bg-yellow-500 cursor-pointer whitespace-nowrap hover:bg-yellow-600">
                             <div> Clear Filter</div>
